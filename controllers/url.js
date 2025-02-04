@@ -29,10 +29,29 @@ async function HandleGetAnalytics(req,res) {
     
 };
 
+async function HandleGetShortId(req,res) {
+   const shortId= req.params.shortId;
+      const entry= await URL.findOneAndUpdate({
+          shortId,
+      }, 
+      { $push: 
+          {
+              visitHistory: {
+                  timestamp: Date.now(),
+              }
+          },
+      }
+  );
+  
+  res.redirect(entry.redirectURL);
+  
+};
+
 module.exports= 
 {
    HandleGenerateNewShortURL,
    HandleGetAnalytics,
+   HandleGetShortId,
    
 };
 
