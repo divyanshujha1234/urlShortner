@@ -15,7 +15,10 @@ async function  HandleGenerateNewShortURL(req,res) {
            
         }
       );
-      res.json({id: shortID});
+      res.render('home',{
+        id: shortID,
+      });
+      //return res.json({id: shortID});
 
     
 };
